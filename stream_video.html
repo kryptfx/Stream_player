@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <style>
+    /* Include Plyr CSS */
+    @import url('https://cdn.plyr.io/3.7.0/plyr.css');
+  </style>
+</head>
+<body>
+  <center>
+    <video
+      autoplay="autoplay"
+      controls="controls"
+      id="player"
+      loop="loop"
+      src="https://superior-dareen-firework-d62602f5.koyeb.app/stream/23?hash=ead866"
+      tabindex="0"
+      type="video/webm, video/mp4, video/x-m4v, video/*, .mkv, .mp3"
+      width="100%"
+    ></video>
+  </center>
+
+  <script src="https://cdn.plyr.io/3.7.0/plyr.js"></script>
+  <script>
+    const player = new Plyr('#player', {
+      controls: [
+        'play-large',
+        'rewind',
+        'play',
+        'fast-forward',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'captions',
+        'settings',
+        'pip',
+        'fullscreen'
+      ]
+    });
+
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    function ctrlShiftKey(e, keyCode) {
+      return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+    }
+
+    document.onkeydown = (e) => {
+      // Disable F12, Ctrl + Shift + I, Ctrl + Shift + J, Ctrl + U
+      if (e.keyCode === 123 || ctrlShiftKey(e, 'I') || ctrlShiftKey(e, 'J') || ctrlShiftKey(e, 'C') || (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))) {
+        return false;
+      }
+    };
+
+    document.onkeydown = function (cc) {
+      if (cc.which == 85) {
+        return false;
+      }
+    };
+  </script>
+</body>
+</html>
